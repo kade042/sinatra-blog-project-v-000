@@ -14,9 +14,9 @@ class PostsController < ApplicationController
 
     if logged_in? && Post.valid_params?(params)
       #binding.pry
-      @posts = current_user.posts.create(params[:post])
-      @posts.category ||= Category.create(name: params[:category]) unless params[:category].empty?
-      @posts.save
+      @post = current_user.posts.create(params[:post])
+      @post.category = Category.create(name: params[:category]) unless params[:category].empty?
+      @post.save
 
       redirect "/posts"
     else
@@ -47,7 +47,11 @@ class PostsController < ApplicationController
     @post = user_posts.find_by(id: params[:id])
 
     if @post && !params["post"]["content"].empty?
+      #binding.pry
+
       @post.update(params["post"])
+      @post.category = Category.create(name: params[:category]) unless params[:category].empty?
+      @post.save
       redirect '/posts'
     else
       redirect "/posts" #/#{@post.id}/edit"
@@ -55,7 +59,7 @@ class PostsController < ApplicationController
   end
 
   get '/posts/:id/edit' do
-    binding.pry
+    #binding.pry
     if logged_in? &&
       @tweet = Post.find_by(id: params[:id])
       erb :"posts/edit_post"
