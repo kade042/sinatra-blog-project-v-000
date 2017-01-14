@@ -6,11 +6,11 @@
                     <form action="/posts" method="post" class="form-horizontal" role="form">
                       <div class="form-group">
                         <div class="col-sm-9">
-                          <input list="categories" name="category" placeholder="Category:">
+                          <input name="category" placeholder="Category:">
                             <!--<datalist id="categories">-->
-                            <select category>
+                            <select name="post[category_id]">
                               <% Category.all.each do |cat| %>
-                                <option value="<%= cat.name %>"><%= cat.name %></option>
+                                <option value="<%= cat.id %>"><%= cat.name %></option>
                               <% end %>
                             <!--</datalist>-->
                           </select>
@@ -20,13 +20,13 @@
 
                       <div class="form-group">
                           <div class="col-sm-9">
-                              <input type="text" name="title" class="form-control" id="title" placeholder="Title:" required>
+                              <input type="text" name="post[title]" class="form-control" id="title" placeholder="Title:" required>
                           </div>
                       </div>
 
                       <div class="form-group">
                           <div class="col-sm-9">
-                              <textarea rows="10" cols="30" name="content" class="form-control" id="content"  required></textarea>
+                              <textarea rows="10" cols="30" name="post[content]" class="form-control" id="content"  required></textarea>
                           </div>
                       </div>
 

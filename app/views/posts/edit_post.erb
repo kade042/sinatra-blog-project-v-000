@@ -9,11 +9,11 @@
                       <input id="hidden" type="hidden" name="_method" value="patch">
                       <div class="form-group">
                         <div class="col-sm-9">
-                          <input list="categories" name="category" placeholder="Category:">
+                          <input name="category" placeholder="Category:" >
                             <!--<datalist id="categories">-->
-                            <select category>
+                            <select name="post[category_id]" >
                               <% Category.all.each do |cat| %>
-                                <option value="<%= cat.name %>"><%= cat.name %></option>
+                                <option value="<%= cat.id %>"><%= cat.name %></option>
                               <% end %>
                             <!--</datalist>-->
                           </select>
